@@ -1,21 +1,25 @@
 #include <iostream>
 
-int* clear_function(int* array, int arrSize)
+int* clear_function(int* array, int index)
 {
-	int index;
-	std::cin >> index;
-	for (int i = index; i < arrSize; i++)
+	int* newArr = new int[index];
+
+	for (int i = 0; i < index; i++)
 	{
-		array[i] = NULL;
+		newArr[i] = array[i];
 	}
 
-	return 0;
+	delete array;
+
+	return newArr;
 }
 
 int main()
 {
 	int arrSize;
 	std::cin >> arrSize;
+	int index;
+	std::cin >> index;
 	int* arr = new int[arrSize];
 	for (int i = 0; i < arrSize; i++)
 	{
@@ -24,10 +28,10 @@ int main()
 
 
 
-	clear_function(arr, arrSize);
+	int* pointer = clear_function(arr, index);
 
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < index; i++)
 	{
-		std::cout << *&arr[i];
+		std::cout << pointer[i];
 	}
 }
