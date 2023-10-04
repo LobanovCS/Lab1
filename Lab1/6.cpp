@@ -1,32 +1,43 @@
 #include <iostream>
 using namespace std;
 
-int insert_arr(int insertIndex)
+int* insert_arr(int* array, int insertIndex)
 {
-	cin >> insertIndex;
-	int result;
-	result = insertIndex;
-	return result;
+	int* newArr = new int[insertIndex];
+
+	for (int i = 0; i < insertIndex; i++)
+	{
+		newArr[i] = array[i];
+	}
+
+	delete[] array;
+
+	for (int i = 0; i < insertIndex; i++)
+	{
+		newArr[i] = i;
+	}
+
+	return newArr;
 }
 
 int main()
 {
-	int arr[10];
-	for (int i = 0; i < 10; i++)
+	int size;
+	cin >> size;
+	int* arr = new int[size];
+	for (int i = 0; i < size; i++)
 	{
 		arr[i] = NULL;
 	}
 
-	int index = 0;
+	int index;
+	cin >> index;
 
-	for (int i = insert_arr(index); i < 10; i++)
-	{
-		arr[i] = i;
-	}
+	int* pointer = insert_arr(arr, index);
 
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < index; i++)
 	{
-		cout << arr[i] << endl;
+		cout << pointer[i] << endl;
 	}
 
 	return 0;
